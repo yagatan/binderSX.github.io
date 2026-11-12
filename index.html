@@ -7,16 +7,19 @@
 @media(max-width:370px){.nav{gap:12px}.nav a{font-size:7px}.nav .nav-contact{padding:9px 11px}.hero h1{font-size:9.5vw}.demo-frame{padding:9px}.demo-body{padding:17px 12px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
-/* Keep the hover target still while the heading recedes. */
-.hero{--departure:0}.hero-title-zone{position:relative;margin:0 0 30px}.hero-title-zone h1{margin-bottom:0;transform:scale(1);transform-origin:50% 50%;transition:transform .8s cubic-bezier(.22,.7,.2,1),color .65s,text-shadow .65s;will-change:transform}
-@media(hover:hover) and (pointer:fine){.hero-title-zone:hover h1{transform:scale(.73);color:#a19fa7;text-shadow:0 1px 0 #7f7d85,0 2px 0 #625f69,0 7px 20px #0008}}
-.hero .round-link{transition:background .35s,color .35s,border-color .35s,transform .35s}.hero .round-link:hover,.hero .round-link:focus-visible,.hero.is-departing .round-link{background:var(--cream);border-color:var(--cream);color:#171719;transform:translateY(0)}
-.hero.is-departing .hero-title-zone h1{transform:translateY(calc(var(--departure)*-35px)) scale(calc(var(--departure-start-scale,1) + var(--departure)*var(--departure-scale-range,.23)));color:#fbfaf8;text-shadow:0 2px 0 #dad8da,0 4px 0 #b5b3b8,0 6px 0 #74747f,0 13px 24px #0009;transition:color .4s,text-shadow .4s}
-.hero.is-resetting .hero-title-zone h1{transition:none}#projects:focus{outline:none}
-@media(max-width:760px){.hero-title-zone{margin-bottom:25px}.hero-title-zone h1{margin-bottom:0}}
-@media(prefers-reduced-motion:reduce){.hero-title-zone h1{will-change:auto}.hero-title-zone:hover h1,.hero.is-departing .hero-title-zone h1{transform:none}}
+
+/* Shared scene stays behind every section, instead of disappearing after the hero. */
+body{isolation:isolate;background:#060709}body>#flower-field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.hero,main{position:relative;z-index:1}.hero{background:transparent;isolation:auto;--hero-scroll:0}.hero:after{background:linear-gradient(180deg,#06070950,transparent 22%,transparent 90%);z-index:-1}
+.hero-copy{opacity:clamp(0,calc(1 - var(--hero-scroll)*1.32),1);transform:translateY(calc(var(--hero-scroll)*-50px));will-change:transform,opacity}.hero-title-zone{margin-bottom:30px;perspective:1000px}.hero .hero-title-zone h1{margin-bottom:0;transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) rotateZ(var(--tilt-z,0deg));transform-origin:center;will-change:transform;color:#fbfaf8;transition:color .4s}.hero .hero-title-zone:hover h1{color:#fbfaf8}
+.hero .round-link:hover,.hero .round-link:focus-visible,.scene-travelling .round-link{background:var(--cream);color:#171719;border-color:var(--cream);transform:none}
+main{background:transparent}.work-card{background:linear-gradient(145deg,#17131de8,#0c0d11e0);backdrop-filter:blur(12px)}.work-art{background:radial-gradient(ellipse at 50% 55%,#41305244,#08090c66)}.work-heading,.demo-copy,.about,.workflow,.contact-copy{text-shadow:0 2px 15px #000,0 0 28px #000}.work-heading p,.demo-copy p,.about-description,.workflow p{color:#c4bdcf}.section-tag{color:#c2b7cd}.demo-frame{background:#090a10aa;backdrop-filter:blur(8px)}.about,.workflow{border-color:#ffffff35}.contact{background:linear-gradient(180deg,#06070930,#100b19a0)}.contact-copy p{color:#bfb6ca}.reveal-pending{opacity:0;transform:translateY(42px);transition:opacity 1.05s ease var(--reveal-delay,0ms),transform 1.05s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms)}.reveal-pending.is-visible{opacity:1;transform:translateY(0)}.reveal-pending.work-card.is-visible:hover{transform:translateY(-6px)}.reveal-pending:focus-within{opacity:1;transform:none;transition:none}#projects:focus{outline:none}
+.motion-paused .hero-title-zone h1{transform:none}.motion-paused .reveal-pending{opacity:1;transform:none;transition:none}
+@media(max-width:760px){.hero-title-zone{margin-bottom:25px}.hero-title-zone h1{margin-bottom:0}.work-card{backdrop-filter:none;background:#100f15e8}.reveal-pending{transform:translateY(24px)}}
+@media(prefers-reduced-motion:reduce){.hero-copy{transform:none;opacity:1}.hero .hero-title-zone h1{transform:none;will-change:auto}.reveal-pending{opacity:1;transform:none;transition:none}}
+
+.work-heading{position:relative;isolation:isolate}.work-heading:before{content:"";position:absolute;z-index:-1;inset:-25px 0;background:radial-gradient(ellipse at center,#060709eb 0%,#060709b8 32%,#06070900 73%);pointer-events:none}.demo-copy,.about,.workflow,.contact-copy{background:radial-gradient(ellipse at center,#060709a8,transparent 80%)}
 </style></head><body><a class="skip" href="#projects">Перейти к работам</a>
-<section class="hero" id="home"><canvas id="flower-field" aria-hidden="true"></canvas><header class="wrap"><a class="brand" href="#home"><span>made by </span>yagatan</a><nav class="nav" aria-label="Основная навигация"><a href="#projects">Работы</a><a href="#about">Обо мне</a><a href="#process">Процесс</a><a class="nav-contact" href="#contact">Написать</a></nav></header><div class="hero-copy"><div class="eyebrow">Independent creator / AHK & roleplay</div><div class="hero-title-zone"><h1>made by yagatan</h1></div><p class="hero-description">Биндеры, в которых есть характер.<br>Из личной идеи — в твою игру.</p><a class="round-link" href="#projects" aria-label="Смотреть мои работы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div><div class="hero-bottom wrap"><span><span class="tiny-flower" aria-hidden="true">✧</span> КОД. ВИЗУАЛ. НЕМНОГО МАГИИ.</span><span>SCROLL TO EXPLORE</span><button class="motion-toggle" id="motion-toggle" aria-pressed="false">Приостановить анимацию</button></div></section>
+<canvas id="flower-field" aria-hidden="true"></canvas><section class="hero" id="home"><header class="wrap"><a class="brand" href="#home"><span>made by </span>yagatan</a><nav class="nav" aria-label="Основная навигация"><a href="#projects">Работы</a><a href="#about">Обо мне</a><a href="#process">Процесс</a><a class="nav-contact" href="#contact">Написать</a></nav></header><div class="hero-copy"><div class="eyebrow">Independent creator / AHK & roleplay</div><div class="hero-title-zone"><h1>made by yagatan</h1></div><p class="hero-description">Биндеры, в которых есть характер.<br>Из личной идеи — в твою игру.</p><a class="round-link" href="#projects" aria-label="Смотреть мои работы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div><div class="hero-bottom wrap"><span><span class="tiny-flower" aria-hidden="true">✧</span> КОД. ВИЗУАЛ. НЕМНОГО МАГИИ.</span><span>SCROLL TO EXPLORE</span><button class="motion-toggle" id="motion-toggle" aria-pressed="false">Приостановить анимацию</button></div></section>
 <main><section class="section wrap" id="projects" tabindex="-1"><div class="work-heading"><div class="section-tag">Избранное / 2026</div><h2 class="section-title">мои работы</h2><p>Один проект. Разные стороны.<br>От первой идеи до деталей, которые чувствуются.</p></div><div class="work-grid">
 <article class="work-card"><div class="work-art" aria-hidden="true"><div class="fan"><div class="fan-panel back-left"><span class="preview-command">!me</span></div><div class="fan-panel back-right"><span class="preview-command">AHK v2</span></div><div class="fan-panel front"><span class="preview-title">yagatan</span><small>ROLEPLAY BINDER</small></div></div></div><div class="work-body"><div class="work-meta">Личный проект · Windows</div><h3>RP-биндер</h3><p>Горячие клавиши, твои сценарии и меньше рутины. Всё, чтобы оставаться в роли.</p><button class="card-arrow" id="project-details" aria-label="Подробнее о RP-биндере"><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></div></article>
 <article class="work-card"><div class="work-art scenario-art" aria-hidden="true"><div class="fan"><div class="fan-panel back-left"><span class="preview-command">!do</span></div><div class="fan-panel back-right"><span class="preview-command">!me</span></div><div class="fan-panel front"><span class="preview-title">F1</span><small>ONE KEY. YOUR STORY.</small></div></div></div><div class="work-body"><div class="work-meta">3 примера · интерактивное демо</div><h3>RP-сценарии</h3><p>Последовательности, которые работают на твою историю. Попробуй прямо здесь.</p><a class="card-arrow" href="#demo" aria-label="Попробовать RP-сценарии"><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></article>
@@ -37,67 +40,78 @@ play.addEventListener('click',()=>{if(running)return;renderLines();step=0;runnin
 const dialog=document.querySelector('#details-dialog');document.querySelector('#project-details').addEventListener('click',()=>dialog.showModal());document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&running)finish('Сценарий остановлен')});
 const navLinks=[...document.querySelectorAll('.nav a')];const sections=navLinks.map(link=>document.querySelector(link.getAttribute('href')));function updateNav(){let current=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=innerHeight*.4)current=section}navLinks.forEach(link=>{const active=link.hash==='#'+current.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})}window.addEventListener('scroll',updateNav,{passive:true});updateNav();
 
-// Procedural flower field: cached sprites, capped resolution and 30fps.
+// One persistent background: scroll lift, spring repulsion and a smoothed title tilt.
 (()=>{
-const canvas=document.querySelector('#flower-field'),ctx=canvas.getContext('2d',{alpha:true});
-const hero=document.querySelector('.hero'),toggle=document.querySelector('#motion-toggle');
-if(!ctx){toggle.hidden=true;return}
+const canvas=document.querySelector('#flower-field'),ctx=canvas.getContext('2d'),hero=document.querySelector('.hero'),title=hero.querySelector('.hero-title-zone'),toggle=document.querySelector('#motion-toggle');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-let paused=reduce.matches,visible=true,raf=0,width=0,height=0,elapsed=0,last=0,pointerX=0,pointerY=0,cameraProgress=0;
-let seed=47;function random(){seed=(seed*16807)%2147483647;return(seed-1)/2147483646}
-const palette=['#e6e6e9','#eee7ed','#cadfdf','#d4cce2','#e5c8d6','#f9f5ef'];
-const sprites=palette.map((color)=>{const c=document.createElement('canvas');c.width=c.height=96;const g=c.getContext('2d');g.translate(48,48);g.fillStyle=color;for(let n=0;n<5;n++){g.save();g.rotate(n*Math.PI*2/5);g.beginPath();g.ellipse(0,-21,10.5,22,0,0,Math.PI*2);g.fill();g.restore()}g.fillStyle='#ffffff45';g.beginPath();g.arc(0,0,5,0,Math.PI*2);g.fill();return c});
-const leaves=document.createElement('canvas');leaves.width=48;leaves.height=32;const lg=leaves.getContext('2d');lg.fillStyle='#294a443d';lg.beginPath();lg.ellipse(24,16,22,6,-.4,0,Math.PI*2);lg.fill();
-const flowers=Array.from({length:2400},()=>({x:random()*2-1,z:Math.pow(random(),1.65),r:random()*6.28,v:random(),color:Math.floor(random()*palette.length)})).sort((a,b)=>a.z-b.z);
-const drifting=Array.from({length:32},()=>({x:random(),y:random(),size:random()*17+5,phase:random()*6.28,color:Math.floor(random()*palette.length)}));
-const stars=Array.from({length:65},()=>({x:random(),y:random()*.5,a:random()*.25+.06}));
-function resize(){const r=hero.getBoundingClientRect();width=r.width;height=r.height;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
-function draw(){ctx.clearRect(0,0,width,height);const mobile=width<760,t=elapsed*.00012;const drift=paused?0:Math.sin(t*.4)*10;ctx.fillStyle='#d9cde7';for(const s of stars){ctx.globalAlpha=s.a;ctx.fillRect(s.x*width,s.y*height,1,1)}
-ctx.save();ctx.translate(width/2,height*.32);ctx.scale(1+cameraProgress*.48,1+cameraProgress*.48);ctx.translate(-width/2,-height*.32-height*cameraProgress*.52);
-for(let i=0;i<flowers.length;i++){if(mobile&&i%2===0)continue;const f=flowers[i],z=f.z;const x=width/2+f.x*width*.62+pointerX*z*14+Math.sin(t+f.r)*z*6;
+let paused=reduce.matches,width=innerWidth,height=innerHeight,raf=0,last=0,elapsed=0,sceneScroll=scrollY,tiltX=0,tiltY=0;
+const pointer={x:-9999,y:-9999,active:false};
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+let seed=47;const random=()=>{seed=seed*16807%2147483647;return(seed-1)/2147483646};
+const colors=['#e6e6e9','#eee7ed','#cadfdf','#d4cce2','#e5c8d6','#f9f5ef'];
+const sprites=colors.map(color=>{const c=document.createElement('canvas');c.width=c.height=96;const g=c.getContext('2d');g.translate(48,48);g.fillStyle=color;for(let n=0;n<5;n++){g.save();g.rotate(n*Math.PI*2/5);g.beginPath();g.ellipse(0,-21,10.5,22,0,0,Math.PI*2);g.fill();g.restore()}return c});
+const leaf=document.createElement('canvas');leaf.width=64;leaf.height=40;const lg=leaf.getContext('2d');lg.fillStyle='#477b696e';lg.beginPath();lg.ellipse(32,20,27,8,-.4,0,Math.PI*2);lg.fill();
+const flowers=Array.from({length:2200},()=>({x:random()*2-1,z:Math.pow(random(),1.65),r:random()*6.28,v:random(),color:Math.floor(random()*6),ox:0,oy:0,vx:0,vy:0})).sort((a,b)=>a.z-b.z);
+const dust=Array.from({length:40},()=>({x:random(),y:random(),r:random()*6.28,size:6+random()*20,color:Math.floor(random()*6),ox:0,oy:0,vx:0,vy:0}));
+const stars=Array.from({length:55},()=>({x:random(),y:random(),a:random()*.2+.05}));
+// Apply a local outward force and a spring back to each particle's own position.
+function repel(p,x,y,dt){
+if(paused){p.ox=p.oy=p.vx=p.vy=0;return}
+let ax=-p.ox*.034,ay=-p.oy*.034;
+if(pointer.active){let dx=x+p.ox-pointer.x,dy=y+p.oy-pointer.y;const distance=Math.hypot(dx,dy),radius=145;
+if(distance<radius){const force=Math.pow(1-distance/radius,1.6)*7;if(distance<.5){dx=Math.cos(p.r);dy=Math.sin(p.r)}const d=Math.max(.5,Math.hypot(dx,dy));ax+=dx/d*force;ay+=dy/d*force}}
+p.vx=(p.vx+ax*dt)*Math.pow(.82,dt);p.vy=(p.vy+ay*dt)*Math.pow(.82,dt);p.ox=clamp(p.ox+p.vx*dt,-180,180);p.oy=clamp(p.oy+p.vy*dt,-180,180);
+}
+function draw(dt=1){
+const progress=clamp(scrollY/Math.max(hero.offsetHeight,1),0,1);hero.style.setProperty('--hero-scroll',progress.toFixed(4));
+const desiredX=pointer.active&&progress<.85&&!paused?-(pointer.y/height-.46)*13:0;
+const desiredY=pointer.active&&progress<.85&&!paused?(pointer.x/width-.5)*24:0;
+tiltX+=(desiredX-tiltX)*(paused?1:.15);tiltY+=(desiredY-tiltY)*(paused?1:.15);
+title.style.setProperty('--tilt-x',tiltX.toFixed(3)+'deg');title.style.setProperty('--tilt-y',tiltY.toFixed(3)+'deg');title.style.setProperty('--tilt-z',(tiltY*.07).toFixed(3)+'deg');
+if(!ctx)return;
+sceneScroll+=(scrollY-sceneScroll)*(paused?1:.22);ctx.clearRect(0,0,width,height);
+const mobile=width<760,t=elapsed*.00012,rise=sceneScroll*.74+elapsed*.0025,afterHero=clamp(sceneScroll/height,0,1),visibility=1-afterHero*.68;
+for(const s of stars){ctx.globalAlpha=s.a;ctx.fillStyle='#d9cde7';ctx.fillRect(s.x*width,s.y*height,1,1)}
+function paint(p,x,y,size,alpha,isLeaf=false){repel(p,x,y,dt);ctx.globalAlpha=alpha*visibility;ctx.save();ctx.translate(x+p.ox,y+p.oy);ctx.rotate(p.r+Math.sin(t+p.r)*.16+p.vx*.018);ctx.scale(1,.75+(p.v||0)*.25);ctx.drawImage(isLeaf?leaf:sprites[p.color],-size/2,-size/2,size,size);ctx.restore()}
+for(let i=0;i<flowers.length;i++){if(mobile&&i%2===0)continue;const f=flowers[i],z=f.z;
+const x=width/2+f.x*width*.62+Math.sin(t+f.r)*z*6;
 const valley=(1-Math.pow(Math.min(Math.abs(f.x),1),.7))*.2;
-const wave=Math.sin(f.x*5+t*.5+z*3)*.052;
-const y=height*(.23+valley+z*.68+wave*(1-z))+drift*z+pointerY*z*8;
+const baseY=height*(.23+valley+z*.68+Math.sin(f.x*5+t*.5+z*3)*.052*(1-z));
 const size=(3.2+Math.pow(z,1.9)*(mobile?32:58))*(.55+f.v*.8);
-if(x<-size||x>width+size||y>height+size)continue;
-ctx.globalAlpha=(.55+z*.4)*Math.max(0,Math.min(1,(height-y)/(height*.08)));
-if(ctx.globalAlpha<=0)continue;
-if(z>.18&&i%3===0)ctx.drawImage(leaves,x+size*.2,y+size*.3,size*1.5,size);
-ctx.save();ctx.translate(x,y);ctx.rotate(f.r+Math.sin(t+f.r)*.17);ctx.scale(1,.65+f.v*.35);ctx.drawImage(sprites[f.color],-size/2,-size/2,size,size);ctx.restore()}
-ctx.restore();
-for(const f of drifting){const x=(f.x*width+Math.sin(t+f.phase)*20)+pointerX*9;const y=f.y*height*.9+Math.sin(t*.7+f.phase)*16;const size=f.size*(mobile?.6:1)*(1+cameraProgress*.6);ctx.globalAlpha=.12+f.size/45;ctx.save();ctx.translate(x,y);ctx.rotate(f.phase+t*.12);ctx.drawImage(sprites[f.color],-size/2,-size/2,size,size);ctx.restore()}
+const travel=height+140;let y=((baseY-rise*(.65+z*.35)+70)%travel+travel)%travel-70;
+if(x<-size||x>width+size)continue;
+const edge=Math.min(1,Math.max(0,(y+60)/65),Math.max(0,(height+60-y)/65));
+paint(f,x,y,size,(.55+z*.4)*edge,i%8===0);
+}
+for(const f of dust){const travel=height+100,y=((f.y*height-rise*.5+50)%travel+travel)%travel-50;paint(f,f.x*width+Math.sin(t+f.r)*18,y,f.size*(mobile?.7:1),.4)}
 ctx.globalAlpha=1;
 }
-hero.addEventListener('hero-camera',event=>{cameraProgress=event.detail;draw()});
-function frame(now){raf=0;if(paused||!visible||document.hidden)return;if(!last)last=now;if(now-last>=32){elapsed+=Math.min(now-last,70);last=now;draw()}raf=requestAnimationFrame(frame)}
-function sync(){cancelAnimationFrame(raf);raf=0;last=0;toggle.textContent=paused?'Включить анимацию':'Приостановить анимацию';toggle.setAttribute('aria-pressed',String(paused));draw();if(!paused&&visible&&!document.hidden)raf=requestAnimationFrame(frame)}
-toggle.addEventListener('click',()=>{paused=!paused;sync()});reduce.addEventListener('change',()=>{paused=reduce.matches;sync()});document.addEventListener('visibilitychange',sync);new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:0}).observe(hero);window.addEventListener('resize',resize,{passive:true});hero.addEventListener('pointermove',e=>{if(paused||e.pointerType==='touch')return;const r=hero.getBoundingClientRect();pointerX=(e.clientX-r.left)/width-.5;pointerY=(e.clientY-r.top)/height-.5},{passive:true});hero.addEventListener('pointerleave',()=>{pointerX=pointerY=0});resize();sync();
+function resize(){width=innerWidth;height=innerHeight;if(ctx){const ratio=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0)}draw()}
+function frame(now){raf=0;if(document.hidden||paused)return;if(!last)last=now-33;const delta=now-last;if(delta>=30){const dt=clamp(delta/33,0,2);elapsed+=Math.min(delta,66);last=now;draw(dt)}raf=requestAnimationFrame(frame)}
+function sync(){cancelAnimationFrame(raf);raf=0;last=0;toggle.textContent=paused?'Включить анимацию':'Приостановить анимацию';toggle.setAttribute('aria-pressed',String(paused));document.body.classList.toggle('motion-paused',paused);draw();if(!paused&&!document.hidden)raf=requestAnimationFrame(frame)}
+window.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;pointer.x=e.clientX;pointer.y=e.clientY;pointer.active=true},{passive:true});
+document.addEventListener('pointerleave',()=>{pointer.active=false});window.addEventListener('blur',()=>{pointer.active=false});
+window.addEventListener('scroll',()=>{if(paused)draw()},{passive:true});window.addEventListener('resize',resize,{passive:true});
+toggle.addEventListener('click',()=>{paused=!paused;sync()});reduce.addEventListener('change',()=>{paused=reduce.matches;sync()});document.addEventListener('visibilitychange',sync);
+resize();sync();
 })();
 
-
-// The title hover and downward flight share one stable hit area.
+// Let content emerge over the same field during both manual and button scrolling.
 (()=>{
-const hero=document.querySelector('.hero'),link=hero.querySelector('.round-link'),destination=document.querySelector('#projects');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-let active=false,flightFrame=0,resetTimer=0;
-function camera(progress){hero.style.setProperty('--departure',progress);hero.dispatchEvent(new CustomEvent('hero-camera',{detail:progress}))}
-function reset(){cancelAnimationFrame(flightFrame);clearTimeout(resetTimer);active=false;hero.classList.add('is-resetting');hero.classList.remove('is-departing');link.removeAttribute('aria-busy');camera(0);requestAnimationFrame(()=>hero.classList.remove('is-resetting'))}
-function navigate(instant){destination.scrollIntoView({behavior:instant?'instant':'smooth',block:'start'});destination.focus({preventScroll:true});if(location.hash!=='#projects')history.pushState(null,'','#projects');resetTimer=setTimeout(reset,instant?0:900)}
-link.addEventListener('click',event=>{
-if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-event.preventDefault();if(active)return;
-active=true;
-const paused=document.querySelector('#motion-toggle').getAttribute('aria-pressed')==='true';
-if(reduced.matches||paused){navigate(true);return}
-const currentTransform=getComputedStyle(hero.querySelector('h1')).transform;const startScale=currentTransform==='none'?1:new DOMMatrixReadOnly(currentTransform).a;hero.style.setProperty('--departure-start-scale',startScale);hero.style.setProperty('--departure-scale-range',1.23-startScale);hero.classList.add('is-departing');link.setAttribute('aria-busy','true');
-const start=performance.now();let previous=0;
-function fly(now){if(!active)return;const duration=now-start;if(now-previous>=30){const p=Math.min(duration/1000,1);const ease=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;camera(ease);previous=now}if(duration>=1120){navigate(false);return}flightFrame=requestAnimationFrame(fly)}
-flightFrame=requestAnimationFrame(fly);
+const targets=[...document.querySelectorAll('.work-heading,.work-card,.demo-copy,.demo-frame,.about>div,.workflow>div,.contact-copy')];
+if('IntersectionObserver' in window){const reveal=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target)}}},{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+targets.forEach((el,i)=>{el.style.setProperty('--reveal-delay',el.classList.contains('work-card')?((i-1)%3)*100+'ms':'0ms');if(el.getBoundingClientRect().top>innerHeight*.9&&!reduced.matches)el.classList.add('reveal-pending');reveal.observe(el)})}
+const link=document.querySelector('.round-link'),destination=document.querySelector('#projects');let scrolling=false,raf=0;
+function stop(){cancelAnimationFrame(raf);scrolling=false;link.removeAttribute('aria-busy');document.body.classList.remove('scene-travelling')}
+function finish(){stop();destination.focus({preventScroll:true});if(location.hash!=='#projects')history.pushState(null,'','#projects')}
+link.addEventListener('click',event=>{if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();if(scrolling)return;
+const end=scrollY+destination.getBoundingClientRect().top-35;
+if(reduced.matches||document.body.classList.contains('motion-paused')){window.scrollTo({top:end,behavior:'instant'});finish();return}
+scrolling=true;link.setAttribute('aria-busy','true');document.body.classList.add('scene-travelling');const start=scrollY,started=performance.now();
+function travel(now){const p=Math.min(1,(now-started)/1750),ease=p*p*(3-2*p);window.scrollTo({top:start+(end-start)*ease,behavior:'instant'});if(p<1)raf=requestAnimationFrame(travel);else finish()}raf=requestAnimationFrame(travel)
 });
-function interrupt(){if(active)reset()}
-window.addEventListener('wheel',interrupt,{passive:true});window.addEventListener('touchstart',interrupt,{passive:true});window.addEventListener('popstate',interrupt);document.addEventListener('visibilitychange',()=>{if(document.hidden)interrupt()});
-document.addEventListener('keydown',event=>{if(['Escape','PageDown','PageUp','ArrowDown','ArrowUp','Home','End',' '].includes(event.key))interrupt()});
-reduced.addEventListener('change',()=>{if(reduced.matches&&active){reset();navigate(true)}});
+window.addEventListener('wheel',stop,{passive:true});window.addEventListener('touchstart',stop,{passive:true});window.addEventListener('popstate',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});document.addEventListener('keydown',e=>{if(['Escape','ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key))stop()});reduced.addEventListener('change',()=>{if(reduced.matches){stop();targets.forEach(el=>el.classList.add('is-visible'))}});
 })();
 
 </script>
