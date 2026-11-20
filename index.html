@@ -55,33 +55,223 @@ body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none
 .contact-flower.right{color:#7fe0d0;opacity:.3;animation:spin-r 90s linear infinite}
 @keyframes spin-l{from{transform:rotate(-20deg)}to{transform:rotate(340deg)}}
 @keyframes spin-r{from{transform:rotate(380deg)}to{transform:rotate(20deg)}}
+
+.work-body p,.demo-copy p{font-size:.9375rem;line-height:1.65}
+.work-body p{max-width:32ch;padding-right:32px}
+.demo-line{font-size:.8125rem;line-height:1.5}
+.nav a:not(.nav-contact){position:relative;padding-block:10px}
+.nav a:not(.nav-contact)::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--violet),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .24s ease}
+.nav a:is(:hover,:focus-visible,.active)::after{transform:scaleX(1)}
+.fan-panel{transition:translate .35s ease}
+.work-card:focus-within .back-left{translate:-9px 1px}
+.work-card:focus-within .back-right{translate:9px 1px}
+@media(hover:hover){
+  .work-card:hover .back-left{translate:-9px 1px}
+  .work-card:hover .back-right{translate:9px 1px}
+}
+@media(prefers-reduced-motion:no-preference){
+  body:not(.motion-paused) .hero-title-zone{animation:arrive .65s cubic-bezier(.2,.7,.25,1) both}
+  body:not(.motion-paused) .hero-description{animation:arrive .55s .10s ease-out both}
+  body:not(.motion-paused) .dialog[open]{animation:arrive .22s ease-out}
+  body:not(.motion-paused) .dialog[open]::backdrop{animation:veil .22s ease-out}
+}
+@keyframes arrive{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+.demo-section{grid-template-areas:"intro editor" "chat editor";grid-template-rows:auto auto;row-gap:22px}
+.demo-copy{grid-area:intro;align-self:end}
+.demo-frame{grid-area:editor;min-width:0}
+.demo-chat{grid-area:chat;align-self:start;min-width:0;overflow:hidden;border:1px solid #64566f80;border-radius:14px;background:linear-gradient(135deg,#1b1822,#111519);box-shadow:0 12px 28px #0003}
+.demo-chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid #ffffff12}
+.demo-chat-head h3{font-size:.875rem;font-weight:700;margin:0;display:flex;gap:9px;align-items:center}
+.demo-chat-head svg{width:18px;height:18px;color:#d1b6f5}
+.demo-count{font:600 .8rem ui-monospace,monospace;color:#b4c8c5}
+.chat-output{min-height:9rem;padding:12px 16px 16px;font-size:.875rem;line-height:1.55}
+.chat-output p{margin:0;overflow-wrap:anywhere}
+.chat-output p+p{margin-top:6px}
+.chat-output .chat-empty{color:#afa7b6}
+.chat-output .chat-action{color:#dbbee9}
+.chat-output .chat-scene{color:#a3d9cc}
+.chat-output .chat-speech{color:#f7efe1}
+.demo-body .demo-controls{justify-content:flex-start;flex-wrap:wrap}
+@media(prefers-reduced-motion:no-preference){
+  body:not(.motion-paused) .chat-entry{animation:chat-arrive .23s ease-out}
+}
+@keyframes chat-arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:760px){
+  .demo-section{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "editor" "chat";gap:18px}
+  .chat-output{min-height:8rem}
+}
+@keyframes veil{from{opacity:0}to{opacity:1}}
+body.motion-paused *,body.motion-paused *::after{transition-duration:0s!important}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:0s!important}
+}
+@media(max-width:420px){
+  header.wrap{width:calc(100% - 24px)}
+  .nav{gap:10px}
+  .demo-frame{padding:8px}
+  .demo-body{padding:16px}
+}
+/* Keep the flower field visible around a quieter, legible centre. */
+.hero{background:radial-gradient(ellipse 53% 39% at 50% 46%,#080911ed 2%,#090914ae 47%,transparent 100%)}
+.hero-brand{display:inline-flex;align-items:center;gap:.35em}
+.brand-bloom{display:inline-block;width:25px;height:25px;margin-right:5px;background:radial-gradient(circle at 50% 50%,#ffd9ad 0 13%,transparent 16%),radial-gradient(ellipse 20% 29% at 50% 25%,#dcbfff 95%,transparent),radial-gradient(ellipse 25% 20% at 75% 46%,#ffbfd9 95%,transparent),radial-gradient(ellipse 20% 25% at 65% 74%,#e7c4ee 95%,transparent),radial-gradient(ellipse 20% 25% at 35% 74%,#bfa2f1 95%,transparent),radial-gradient(ellipse 25% 20% at 25% 46%,#bcacff 95%,transparent);transition:rotate .45s}
+.hero-brand:hover .brand-bloom{rotate:35deg}
+.hero .hero-description{font-size:clamp(.9375rem,1.4vw,1.125rem);color:#f0eaf5;line-height:1.55}
+.demo-select-label select:focus-visible{
+  outline:2px solid #d5b8e9;
+  outline-offset:-2px;
+}
+.hero-actions{display:flex;justify-content:center;align-items:center;gap:10px}
+.hero-bottom{color:#e3dfea;text-shadow:0 1px 6px #000}
+.hero-bottom::before{content:"";position:absolute;z-index:-1;left:50%;width:100vw;transform:translateX(-50%);bottom:-30px;height:94px;pointer-events:none;background:linear-gradient(transparent,#060709d6)}
+.hero-play{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1px solid #ffffff90;border-radius:32px;background:var(--cream);color:#201923;font-size:.9375rem;font-weight:800;box-shadow:0 5px 25px #08071166;transition:background .2s,translate .2s}
+.hero-play i{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid currentColor}
+.hero-play:is(:hover,:focus-visible){background:#f7ddee;translate:0 -2px}
+.hero-actions .round-link{background:#121018c9}
+.nav a:not(.nav-contact){font-size:.6875rem}
+.work-art{border-bottom-color:#ffffff21}
+.work-body .card-arrow{grid-column:2;grid-row:1 / 4;align-self:end;position:static;width:44px;height:44px}
+.work-body{position:static;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-content:start}
+.work-body>:is(.work-meta,h3,p){grid-column:1}
+.work-card .card-arrow::before{content:"";position:absolute;inset:0}
+.work-card:focus-within{outline:2px solid var(--accent);outline-offset:3px}
+.work-body p{padding-right:0;max-width:36ch}
+.work-meta,.step-number,.demo-copy small,.work-note{font-size:.75rem}
+@media(max-width:760px){
+  .hero{background:radial-gradient(ellipse 75% 33% at 50% 48%,#080911ed,#09091495 67%,transparent)}
+  .hero-brand{font-size:1rem}
+  .hero .hero-description{padding-inline:12px}
+  .hero-bottom .motion-toggle{min-height:44px;font-size:.6875rem;padding-inline:14px}
+  .hero-bottom>span{font-size:.625rem}
+  .nav{gap:clamp(8px,2.6vw,18px)}
+  .nav a{display:inline-flex;align-items:center;min-height:44px}
+  .nav a:not(.nav-contact){font-size:.625rem;letter-spacing:.35px}
+  .nav .nav-contact{font-size:.6875rem;padding-inline:12px}
+}
+@media(max-width:410px){
+  .hero-brand .brand-bloom{display:none}
+  .work-art{height:200px}
+  .work-body{min-height:auto}
+}
+@media(max-width:350px){
+  header.wrap{height:auto;align-items:flex-start;flex-direction:column;gap:3px;padding-top:14px}
+  .nav{width:100%;justify-content:space-between}
+  .nav a{white-space:nowrap}
+}
 </style></head><body><div class="progress" aria-hidden="true"></div><a class="skip" href="#projects">Перейти к работам</a>
-<canvas id="flower-field" aria-hidden="true"></canvas><section class="hero" id="home"><header class="wrap"><a class="brand" href="#home"><span>made by </span>yagatan</a><nav class="nav" aria-label="Основная навигация"><a href="#projects">Работы</a><a href="#about">Обо мне</a><a href="#process">Процесс</a><a class="nav-contact" href="#contact">Написать</a></nav></header><div class="hero-copy"><div class="eyebrow">AutoHotkey v2 / Roleplay</div><div class="hero-title-zone"><h1>made by yagatan</h1></div><p class="hero-description">Биндеры для RP на AutoHotkey v2.<br>Личный проект.</p><a class="round-link" href="#projects" aria-label="Смотреть мои работы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div><div class="hero-bottom wrap"><span>AutoHotkey v2 · Windows</span><span>Прокрутите вниз</span><button class="motion-toggle" id="motion-toggle" aria-pressed="false">Приостановить анимацию</button></div></section>
+<canvas id="flower-field" aria-hidden="true"></canvas><section class="hero" id="home"><header class="wrap"><a class="brand hero-brand" href="#home"><i class="brand-bloom" aria-hidden="true"></i><span>made by </span>yagatan</a><nav class="nav" aria-label="Основная навигация"><a href="#projects">Работы</a><a href="#about">Обо мне</a><a href="#process">Процесс</a><a class="nav-contact" href="#contact">Написать</a></nav></header><div class="hero-copy"><div class="eyebrow">AutoHotkey v2 / Roleplay</div><div class="hero-title-zone"><h1>made by yagatan</h1></div><p class="hero-description">Одна клавиша запускает целый RP-сценарий.</p><div class="hero-actions"><a class="hero-play" href="#demo"><i aria-hidden="true"></i>Открыть демо</a><a class="round-link" href="#projects" aria-label="Смотреть мои работы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div></div><div class="hero-bottom wrap"><span>AutoHotkey v2 · Windows</span><span>Прокрутите вниз</span><button class="motion-toggle" id="motion-toggle" aria-pressed="false">Приостановить анимацию</button></div></section>
 <main><section class="section wrap" id="projects" tabindex="-1"><div class="work-heading"><div class="section-tag">2026</div><h2 class="section-title">работы</h2><p>RP-биндер, демо сценариев и интерфейс.</p></div><div class="work-grid">
 <article class="work-card"><div class="work-art" aria-hidden="true"><div class="fan"><div class="fan-panel back-left"><span class="preview-command">!me</span></div><div class="fan-panel back-right"><span class="preview-command">AHK v2</span></div><div class="fan-panel front"><span class="preview-title">yagatan</span><small>ROLEPLAY BINDER</small></div></div></div><div class="work-body"><div class="work-meta">Личный проект · Windows</div><h3>RP-биндер</h3><p>Биндер для Windows: горячие клавиши запускают заготовленные RP-действия.</p><button class="card-arrow" id="project-details" aria-label="Подробнее о RP-биндере"><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></div></article>
 <article class="work-card"><div class="work-art scenario-art" aria-hidden="true"><div class="fan"><div class="fan-panel back-left"><span class="preview-command">!do</span></div><div class="fan-panel back-right"><span class="preview-command">!me</span></div><div class="fan-panel front"><span class="preview-title">F1</span><small>HOTKEY</small></div></div></div><div class="work-body"><div class="work-meta">3 примера · интерактивное демо</div><h3>RP-сценарии</h3><p>Последовательности RP-действий по одной клавише. Демо работает в браузере.</p><a class="card-arrow" href="#demo" aria-label="Попробовать RP-сценарии"><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></article>
 <article class="work-card"><div class="work-art design-art" aria-hidden="true"><div class="fan"><div class="fan-panel back-left"><span class="preview-command">UI</span></div><div class="fan-panel back-right"><span class="preview-command">UX</span></div><div class="fan-panel front"><div class="mini-toolbar">YAGATAN / INTERFACE</div><span class="preview-title" style="font-size:23px">Interface</span><div class="palette"><i></i><i></i><i></i><i></i></div></div></div></div><div class="work-body"><div class="work-meta">Интерфейс</div><h3>Интерфейсы</h3><p>Простая компоновка и понятные кнопки.</p><a class="card-arrow" href="#about" aria-label="Мой подход к интерфейсам"><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></article></div><p class="work-note">Интерактивный пример — ниже.</p></section>
-<section class="wrap demo-section" id="demo"><div class="demo-copy"><div class="section-tag">Демо</div><h2>Демо сценария</h2><p>Выберите сценарий и запустите. Каждая строка — отдельная команда.</p><small>Это браузерная демонстрация. Она не отправляет сообщения в игру. Esc останавливает сценарий.</small></div><div class="demo-frame"><div class="demo-app"><div class="demo-bar"><span class="demo-brand"><b><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></b> YAGATAN <span style="font-weight:450">/ RP Binder</span></span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="demo-body"><label class="demo-select-label">Сценарий <select id="scenario" aria-label="Сценарий"><option value="meeting">Знакомство</option><option value="radio">Радиосвязь</option><option value="notes">Запись в блокнот</option></select></label><div id="demo-lines"></div><div class="demo-controls"><button class="demo-play" id="play">▶ Запустить</button><button class="demo-stop" id="stop" disabled>Остановить</button></div><p class="demo-state" id="demo-state" role="status" aria-live="polite">Готов к запуску · 3 действия</p></div></div></div></section>
+<section class="wrap demo-section" id="demo"><div class="demo-copy"><div class="section-tag">Демо</div><h2>Демо сценария</h2><p>Выберите сценарий и запустите его. Смотрите, как команды превращаются в реплики персонажа.</p><small>Это браузерная демонстрация. Она не отправляет сообщения в игру. Esc останавливает сценарий.</small></div><div class="demo-frame"><div class="demo-app"><div class="demo-bar"><span class="demo-brand"><b><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></b> YAGATAN <span style="font-weight:450">/ RP Binder</span></span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="demo-body"><label class="demo-select-label">Сценарий <select id="scenario" aria-label="Сценарий"><option value="meeting">Знакомство</option><option value="radio">Радиосвязь</option><option value="notes">Запись в блокнот</option></select></label><div id="demo-lines"></div><div class="demo-controls"><button class="demo-play" id="play">▶ Запустить</button><button class="demo-stop" id="stop" disabled>Остановить</button></div><p class="demo-state" id="demo-state" role="status" aria-live="polite">Готов к запуску · 3 действия</p></div></div></div>
+  <section class="demo-chat" aria-labelledby="chat-heading">
+    <div class="demo-chat-head">
+      <h3 id="chat-heading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16v12H9l-5 4V5Z"/><path d="M8 9h8M8 13h5"/></svg> RP-чат</h3>
+      <span id="chat-count" class="demo-count" aria-hidden="true"></span>
+    </div>
+    <div id="chat-output" class="chat-output" role="log" aria-labelledby="chat-heading" aria-live="polite" aria-relevant="additions"></div>
+  </section>
+</section>
 <section class="section wrap" id="about"><div class="about"><div><div class="section-tag">Обо мне</div><h2>yagatan</h2></div><div><p class="about-description">Я из Грузии. Учусь на собственных проектах: пишу, проверяю, исправляю.<br><br>Сейчас делаю AHK-биндеры для RP и интерфейсы к ним.</p><div class="about-tags"><span>AutoHotkey v2</span><span>Roleplay</span><span>UI / UX</span></div></div></div><div class="workflow" id="process"><div><span class="step-number">01 / ЗАДАЧА</span><h3>Что неудобно</h3><p>Замечаю, что повторяется в игре, и делаю из этого задачу.</p></div><div><span class="step-number">02 / РАБОТА</span><h3>Сборка</h3><p>Пишу сценарии и логику, делаю интерфейс.</p></div><div><span class="step-number">03 / ПРОВЕРКА</span><h3>Тест</h3><p>Пользуюсь сам и исправляю недочёты в обновлениях.</p></div></div></section>
 <section class="contact" id="contact"><div class="wrap"><div class="contact-copy"><svg class="contact-flower" viewBox="-50 -50 100 100" aria-hidden="true"><g fill="currentColor"><ellipse cy="-23" rx="12" ry="25"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(72)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(144)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(216)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(288)"/></g></svg><svg class="contact-flower right" viewBox="-50 -50 100 100" aria-hidden="true"><g fill="currentColor"><ellipse cy="-23" rx="12" ry="25"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(72)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(144)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(216)"/><ellipse cy="-23" rx="12" ry="25" transform="rotate(288)"/></g></svg><div class="section-tag">Связь</div><h2>Написать</h2><p>Идея, предложение или баг — создайте Issue на GitHub.</p><a class="btn" href="https://github.com/yagatan/binderSX.github.io/issues/new?title=%D0%98%D0%B4%D0%B5%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" target="_blank" rel="noopener noreferrer">Создать Issue <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><small>GitHub Issues · сообщение будет публичным</small></div><footer class="footer"><a class="brand" href="#home">made by yagatan</a><span>© 2026 yagatan</span><a href="https://github.com/yagatan" target="_blank" rel="noopener noreferrer">GitHub <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></footer></div></section></main>
 <dialog class="dialog" id="details-dialog" aria-labelledby="dialog-title"><button class="dialog-close" id="close-dialog" aria-label="Закрыть">×</button><div class="section-label">Личный проект</div><h2 id="dialog-title">YAGATAN RP Binder</h2><p>Биндер для Windows на AutoHotkey v2. Идея проекта — собирать повторяющиеся RP-действия в удобные последовательности и запускать их горячими клавишами.</p><ul><li>Сценарии отыгровки запускаются горячими клавишами.</li><li>Собственный интерфейс.</li><li>Проект дорабатывается по мере использования.</li></ul><p>Пример на этой странице показывает принцип работы сценариев. Он выполняется только в браузере и не отправляет сообщения в игру.</p><a class="btn btn-pink" href="https://github.com/yagatan/binderSX.github.io" target="_blank" rel="noopener noreferrer">Открыть репозиторий <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></dialog>
 <script>
 'use strict';
 const scenarios={meeting:[['!me','поправил бейдж и улыбнулся'],['!do','На бейдже видно имя персонажа.'],['say','Здравствуйте! Чем могу помочь?']],radio:[['!me','взял рацию и нажал кнопку связи'],['!do','Рация настроена на рабочую частоту.'],['say','Приём, проверка связи.']],notes:[['!me','достал блокнот и ручку'],['!do','Блокнот открыт на чистой странице.'],['!me','сделал короткую запись в блокноте']]};
-const lines=document.querySelector('#demo-lines'),state=document.querySelector('#demo-state'),play=document.querySelector('#play'),stop=document.querySelector('#stop'),selector=document.querySelector('#scenario');
-let timer=null,running=false,step=0;
-function renderLines(){lines.replaceChildren();scenarios[selector.value].forEach(([command,message])=>{const row=document.createElement('div');row.className='demo-line';const tag=document.createElement('span');tag.className='command';tag.textContent=command;const text=document.createElement('span');text.textContent=message;const status=document.createElement('span');status.className='line-status';status.textContent='·';row.append(tag,text,status);lines.append(row)});state.textContent='Готов к запуску · 3 действия';play.textContent='▶ Запустить'}
-function finish(message){clearTimeout(timer);timer=null;running=false;play.disabled=false;stop.disabled=true;selector.disabled=false;play.textContent='↻ Ещё раз';lines.querySelectorAll('.running').forEach(row=>row.classList.remove('running'));state.textContent=message}
-function advance(){if(!running)return;if(step>0){const previous=lines.children[step-1];previous.classList.remove('running');previous.classList.add('done');previous.querySelector('.line-status').textContent='✓'}if(step===3){finish('Сценарий выполнен · 3 из 3 действий');return}lines.children[step].classList.add('running');lines.children[step].querySelector('.line-status').textContent='›';state.textContent=`Выполняется действие ${step+1} из 3…`;step++;timer=setTimeout(advance,1200)}
-play.addEventListener('click',()=>{if(running)return;renderLines();step=0;running=true;play.disabled=true;stop.disabled=false;selector.disabled=true;play.textContent='Выполняется…';advance()});stop.addEventListener('click',()=>finish('Сценарий остановлен'));selector.addEventListener('change',renderLines);renderLines();
+const lines=document.querySelector('#demo-lines'), state=document.querySelector('#demo-state');
+const play=document.querySelector('#play'), stop=document.querySelector('#stop'), selector=document.querySelector('#scenario');
+const chat=document.querySelector('#chat-output'), chatCount=document.querySelector('#chat-count');
+let timer=null, running=false, step=0;
+
+function renderLines(){
+  step=0;
+  lines.replaceChildren();
+  const actions=scenarios[selector.value];
+  for(const [command,message] of actions){
+    const row=document.createElement('div'), tag=document.createElement('span'), text=document.createElement('span'), status=document.createElement('span');
+    row.className='demo-line'; tag.className='command'; tag.textContent=command;
+    text.textContent=message; status.className='line-status'; status.setAttribute('aria-hidden','true'); status.textContent='·';
+    row.append(tag,text,status); lines.append(row);
+  }
+  const placeholder=document.createElement('p');
+  placeholder.className='chat-empty';
+  placeholder.textContent='Здесь появятся реплики сценария.';
+  chat.replaceChildren(placeholder);
+  chatCount.textContent='0 / '+actions.length;
+  state.textContent='Готов к запуску · '+actions.length+' действия';
+  play.textContent='▶ Запустить';
+}
+
+function appendMessage(command,message){
+  const entry=document.createElement('p');
+  const speaker=document.createElement('strong');
+  if(command==='!me'){entry.className='chat-entry chat-action'; speaker.textContent='* Yagatan ';}
+  else if(command==='!do'){entry.className='chat-entry chat-scene'; speaker.textContent='[Сцена] ';}
+  else{entry.className='chat-entry chat-speech'; speaker.textContent='Yagatan: ';}
+  entry.append(speaker,document.createTextNode(message));
+  if(step===0)chat.replaceChildren();
+  chat.append(entry);
+}
+
+function finish(message){
+  clearTimeout(timer); timer=null; running=false;
+  play.disabled=false; stop.disabled=true; selector.disabled=false;
+  play.textContent='↻ Ещё раз'; state.textContent=message;
+  const active=lines.querySelector('.running');
+  if(active){active.classList.remove('running'); active.querySelector('.line-status').textContent='·';}
+}
+
+function advance(){
+  if(!running)return;
+  const actions=scenarios[selector.value];
+  const row=lines.children[step], marker=row.querySelector('.line-status');
+  row.classList.add('running'); marker.textContent='›';
+  state.textContent='Выполняется действие '+(step+1)+' из '+actions.length+'…';
+  timer=setTimeout(()=>{
+    row.classList.remove('running'); row.classList.add('done'); marker.textContent='✓';
+    appendMessage(...actions[step]); step++;
+    chatCount.textContent=step+' / '+actions.length;
+    if(step===actions.length)finish('Сценарий выполнен · '+step+' из '+actions.length+' действий');
+    else advance();
+  },1200);
+}
+play.addEventListener('click',()=>{
+  if(running)return;
+  renderLines(); running=true; play.disabled=true; stop.disabled=false; selector.disabled=true;
+  play.textContent='Выполняется…'; advance();
+});
+stop.addEventListener('click',()=>finish('Сценарий остановлен'));
+selector.addEventListener('change',renderLines);
+renderLines();
 const dialog=document.querySelector('#details-dialog');document.querySelector('#project-details').addEventListener('click',()=>dialog.showModal());document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&running)finish('Сценарий остановлен')});
-const navLinks=[...document.querySelectorAll('.nav a')];const sections=navLinks.map(link=>document.querySelector(link.getAttribute('href')));function updateNav(){document.documentElement.style.setProperty('--page',(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)).toFixed(4));let current=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=innerHeight*.4)current=section}navLinks.forEach(link=>{const active=link.hash==='#'+current.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})}window.addEventListener('scroll',updateNav,{passive:true});updateNav();
+const navLinks=[...document.querySelectorAll('.nav a')];
+const sections=navLinks.map(link=>document.querySelector(link.hash));
+function updateNav(){
+  const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+  document.documentElement.style.setProperty('--page',Math.min(1,Math.max(0,scrollY/maxScroll)).toFixed(4));
+  let current=null;
+  for(const section of sections){
+    if(section.getBoundingClientRect().top<=innerHeight*.4)current=section;
+  }
+  if(scrollY>=maxScroll-2)current=sections.at(-1);
+  navLinks.forEach(link=>{
+    const active=Boolean(current&&link.hash==='#'+current.id);
+    link.classList.toggle('active',active);
+    if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+  });
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('resize',updateNav,{passive:true});
+updateNav();
 
 // One persistent background: scroll lift, spring repulsion and a smoothed title tilt.
 (()=>{
 const canvas=document.querySelector('#flower-field'),ctx=canvas.getContext('2d'),hero=document.querySelector('.hero'),title=hero.querySelector('.hero-title-zone'),toggle=document.querySelector('#motion-toggle');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=reduce.matches,width=innerWidth,height=innerHeight,raf=0,last=0,elapsed=0,sceneScroll=scrollY,tiltX=0,tiltY=0;
+try{if(localStorage.getItem('yagatan-motion')==='paused')paused=true}catch{}
 const pointer={x:-9999,y:-9999,active:false};
 const glow={x:0,y:0,a:0},bursts=[];
 function burst(x,y){if(paused)return;for(let i=0;i<26;i++){const a=Math.random()*6.283,sp=2+Math.random()*7;bursts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.5,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,size:10+Math.random()*22,color:Math.floor(Math.random()*colors.length),life:1})}if(bursts.length>160)bursts.splice(0,bursts.length-160)}
@@ -137,7 +327,17 @@ window.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;poin
 window.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.button!==0)return;if(e.target.closest&&e.target.closest('button,a,select,input,label,dialog'))return;burst(e.clientX,e.clientY)},{passive:true});
 document.addEventListener('pointerleave',()=>{pointer.active=false});window.addEventListener('blur',()=>{pointer.active=false});
 window.addEventListener('scroll',()=>{if(paused)draw()},{passive:true});window.addEventListener('resize',resize,{passive:true});
-toggle.addEventListener('click',()=>{paused=!paused;sync()});reduce.addEventListener('change',()=>{paused=reduce.matches;sync()});document.addEventListener('visibilitychange',sync);
+toggle.addEventListener('click',()=>{
+  paused=!paused;
+  try{if(paused)localStorage.setItem('yagatan-motion','paused');else localStorage.removeItem('yagatan-motion')}catch{}
+  sync();
+});
+reduce.addEventListener('change',()=>{
+  paused=reduce.matches;
+  try{paused=paused||localStorage.getItem('yagatan-motion')==='paused'}catch{}
+  sync();
+});
+document.addEventListener('visibilitychange',sync);
 resize();sync();
 })();
 
