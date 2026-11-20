@@ -124,7 +124,8 @@ body.motion-paused *,body.motion-paused *::after{transition-duration:0s!importan
 }
 .hero-actions{display:flex;justify-content:center;align-items:center;gap:10px}
 .hero-bottom{color:#e3dfea;text-shadow:0 1px 6px #000}
-.hero-bottom::before{content:"";position:absolute;z-index:-1;left:50%;width:100vw;transform:translateX(-50%);bottom:-30px;height:94px;pointer-events:none;background:linear-gradient(transparent,#060709d6)}
+.hero-bottom>span{position:relative;isolation:isolate}
+.hero-bottom>span::before{content:"";position:absolute;z-index:-1;inset:-12px -20px;pointer-events:none;background:radial-gradient(ellipse closest-side,#060709cf,transparent)}
 .hero-play{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:1px solid #ffffff90;border-radius:32px;background:var(--cream);color:#201923;font-size:.9375rem;font-weight:800;box-shadow:0 5px 25px #08071166;transition:background .2s,translate .2s}
 .hero-play i{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid currentColor}
 .hero-play:is(:hover,:focus-visible){background:#f7ddee;translate:0 -2px}
